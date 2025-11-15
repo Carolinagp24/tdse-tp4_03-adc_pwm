@@ -82,24 +82,25 @@ void task_pwm_update(void *parameters)
 {
 
 	static uint16_t period=PERIOD;
-	static int16_t step = STEP;
+	//static int16_t step = STEP;
 
 	shared_data_type *shared_data = (shared_data_type *) parameters;
 
+	shared_data->pwm_active = (period * shared_data->adc_value)/4095;
 	if ( shared_data->adc_end_of_conversion ) {
 		shared_data->adc_end_of_conversion = false;
 		setPWM(htim3, TIM_CHANNEL_1, period, shared_data->pwm_active);
-		if ( step>0 ) {
-			if ( period-step<=shared_data->pwm_active ) {
-				step = step * -1;
-			}
-		}
-		else {
-			if ( abs(step)>=shared_data->pwm_active ) {
-				step = step * -1;
-			}
-		}
-		shared_data->pwm_active = shared_data->pwm_active + step;
+		//if ( step>0 ) {
+			//if ( period-step<=shared_data->pwm_active ) {
+				//step = step * -1;
+			//}
+		//}
+		//else {
+			//if ( abs(step)>=shared_data->pwm_active ) {
+				//step = step * -1;
+			//}
+		//}
+		//shared_data->pwm_active = shared_data->pwm_active + step;
 	}
 }
 

@@ -1,0 +1,4 @@
+-Se usó el promedio de 16 muestras para obtener un valor de adc, este valor varia entre 0 y 4095.
+-ADC_Poll_Read lee el valor obtenido en el pin PA0, midiendo la tension respecto a 3V3 y conviertiendolo en un valor entre 0 y 4095. Este valor se asigna para calcular el promedio.
+-Con ese valor de adc y el periodo, se obtuvo el pwm_active.
+-setPWM(htim3, TIM_CHANNEL_1, period, shared_data->pwm_active) varia el puso dependiendo del valor de pwm_active, por lo que variara el brillo del LED.
